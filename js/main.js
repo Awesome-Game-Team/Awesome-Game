@@ -1,28 +1,34 @@
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update,update });
 
+var map;
+var layer;
+var players;
+var player;
+var cursors;
+var music;
+
 function preload() {
 
   game.load.tilemap('map', 'res/map.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('tiles', 'res/tiles.png');
   game.load.spritesheet("player","res/player.png",64,64);
 
+  var music = "TheGame";
+  game.load.audio('music', [ 'res/music/'+music+'.wav', 'res/music/'+music+'.ogg', 'res/music/'+music+'.mp3']);
 }
 
-var map;
-var layer;
-var player;
-var cursors;
-function create() {
 
+function create() {
+  musicLoad();
   game.stage.backgroundColor = '#0099ff';
 
   loadMap();
   players = this.game.add.group();
   players.enableBody = true;
-  player(100,100,"player");
+  playerCreate(100,100,"player");
   //go fullscreen on click
-  fsClick();
+  fsClick(); //loaded from /lib/fbk.js
   cursors = game.input.keyboard.createCursorKeys();
 }
 
@@ -30,7 +36,7 @@ function update(){
   playerUpdate();
 }
 
-function player(x,y,pl){
+function playerCreate(x,y,pl){
   //get player start position from object layer 
   var pos = findObjectsByType('playerStart', map);
   player = players.create(pos[0].x, pos[0].y, pl);
@@ -106,4 +112,10 @@ function findObjectsByType(type, map, layer) {
     }      
   });
   return result;
+}
+
+function musicLoad(){
+  //  Play some music
+  music = game.add.audio('music');
+  music.loopFull();
 }
