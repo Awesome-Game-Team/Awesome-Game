@@ -1,4 +1,7 @@
-
+/* global Phaser */
+/* 
+http://phaser.io/docs/2.4.7/Phaser.Game.html
+*/
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update,update });
 
 var map;
@@ -10,12 +13,12 @@ var music;
 
 function preload() {
 
-  game.load.tilemap('map', 'res/map.json', null, Phaser.Tilemap.TILED_JSON);
-  game.load.image('tiles', 'res/tiles.png');
-  game.load.spritesheet("player","res/player.png",64,64);
+  game.load.tilemap('map', '../res/map.json', null, Phaser.Tilemap.TILED_JSON);
+  game.load.image('tiles', '../res/tiles.png');
+  game.load.spritesheet("player","../res/player.png",64,64);
 
-  var music = "TheGame";
-  game.load.audio('music', [ 'res/music/'+music+'.wav', 'res/music/'+music+'.ogg', 'res/music/'+music+'.mp3']);
+  music = "TheGame";
+  game.load.audio('music', [ '../res/music/'+music+'.wav', '../res/music/'+music+'.ogg', '../res/music/'+music+'.mp3']);
 }
 
 
