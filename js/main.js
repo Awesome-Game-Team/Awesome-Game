@@ -1,8 +1,4 @@
-/* global Phaser */
-/* 
-http://phaser.io/docs/2.4.7/Phaser.Game.html
-*/
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update,update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser', { preload: preload, create: create, update,update });
 
 var map;
 var layer;
@@ -53,6 +49,14 @@ function playerCreate(x,y,pl){
   player.body.bounce.y = 0.2;
   player.inputEnabled = true;
   player.body.collideWorldBounds = true;
+  player.jetpack = 0;
+  player.jetpackActive = false;
+  
+  //keyboard inputs
+  player.jet = game.input.keyboard.addKey(Phaser.Keyboard.J);
+  player.jet.onDown.add(function(){player.jetpackActive = true}, this);
+  player.jet.onUp.add(function(){player.jetpackActive = false}, this);
+  
   game.camera.follow(player);
 }
 
@@ -82,6 +86,17 @@ function playerUpdate(){
     p.animations.stop();
  
   }
+
+  jetpackActive();
+}
+
+function jetpackActive(){
+  if(player.jetpackActive && player.jet > 0){
+    player.body.velocity.y = -200;
+    player.jet-=.1;
+  }
+  
+  
 }
 
 function loadMap(){
