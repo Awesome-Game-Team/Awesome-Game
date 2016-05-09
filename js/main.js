@@ -11,6 +11,7 @@ function preload() {
 
   game.load.tilemap('map', '../res/map.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('tiles', '../res/tiles.png');
+  game.load.image('jetpack', '../res/jetpack.png');
   game.load.spritesheet("player","../res/player.png",64,64);
 
   music = "TheGame";
@@ -26,6 +27,10 @@ function create() {
   players = this.game.add.group();
   players.enableBody = true;
   playerCreate(100,100,"player");
+  
+  jetpacks = this.game.add.group();
+  jetpacks.enableBody = true;
+  jetpackLoad(200,200);
   //go fullscreen on click
   fsClick(); //loaded from /lib/fbk.js
   cursors = game.input.keyboard.createCursorKeys();
@@ -33,6 +38,7 @@ function create() {
 
 function update(){
   playerUpdate();
+  game.physics.arcade.collide(jetpacks, layer);
 }
 
 function playerCreate(x,y,pl){
@@ -62,6 +68,8 @@ function playerCreate(x,y,pl){
 
 function playerUpdate(){
   game.physics.arcade.collide(players, layer);
+  game.physics.arcade.overlap(players, jetpacks, jetpackGet, null, this);
+
   var p = player;
   p.body.velocity.x = 0;
 
@@ -136,4 +144,16 @@ function musicLoad(){
   //  Play some music
   music = game.add.audio('music');
   music.loopFull();
+}
+
+function jetpackLoad(x,y){
+  
+  var pack = jetpacks.create(x, y,"jetpack");
+  pack.body.gravity.y = 500;
+  pack.body.bounce.y = 0.2;
+}
+
+function jetpackGet(player, pack){
+  player.jet = 100;
+  pack.kill();
 }
