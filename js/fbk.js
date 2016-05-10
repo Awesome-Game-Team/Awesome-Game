@@ -10,7 +10,7 @@ function fsClick(){
 }
 
 function fullscreen(){
-    //Set the game to strech and fill the screen
+    //Set the game to stretch and fill the screen
     //game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.startFullScreen();

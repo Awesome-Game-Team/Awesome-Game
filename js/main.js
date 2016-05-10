@@ -6,6 +6,8 @@ var players;
 var player;
 var cursors;
 var music;
+var mute;
+var mute_btn;
 
 function preload() {
 
@@ -13,9 +15,13 @@ function preload() {
   game.load.image('tiles', '../res/tiles.png');
   game.load.image('jetpack', '../res/jetpack.png');
   game.load.spritesheet("player","../res/player.png",64,64);
+  game.load.spritesheet("mute","../res/mute.png",64,64);
 
   music = "TheGame";
   game.load.audio('music', [ '../res/music/'+music+'.wav', '../res/music/'+music+'.ogg', '../res/music/'+music+'.mp3']);
+
+  // sound effect
+  game.load.audio('jump', [ '../res/fx/jump.wav',  '../res/fx/jump.mp3']);
 }
 
 
@@ -24,15 +30,21 @@ function create() {
   game.stage.backgroundColor = '#0099ff';
 
   loadMap();
-  players = this.game.add.group();
+  players = game.add.group();
   players.enableBody = true;
   playerCreate(100,100,"player");
   
-  jetpacks = this.game.add.group();
+  jetpacks = game.add.group();
   jetpacks.enableBody = true;
   jetpackLoad(200,200);
   //go fullscreen on click
   fsClick(); //loaded from /lib/fbk.js
+  
+  mute = false;
+  mute_btn = game.add.button(0,0, 'mute', muteClick, this);
+  mute_btn.fixedToCamera = true;
+  mute_btn.cameraOffset.setTo(game.width - 128, 32);
+  
   cursors = game.input.keyboard.createCursorKeys();
 }
 
@@ -78,6 +90,8 @@ function playerUpdate(){
     if (p.body.onFloor())
     {
       p.body.velocity.y = -400;
+      jumpSound = game.add.audio('jump');
+      jumpSound.play();
     }
   }
 
@@ -156,4 +170,16 @@ function jetpackLoad(x,y){
 function jetpackGet(player, pack){
   player.jet = 100;
   pack.kill();
+}
+
+function muteClick(){
+  if(mute == false){
+    mute = true;
+    music.stop();
+    mute_btn.frame = 1;
+  }else{
+    mute = false;
+    music.play();
+    mute_btn.frame = 0;
+  }
 }
