@@ -14,8 +14,8 @@ function createExtras(){
 
 function updateExtras(){
     game.physics.arcade.collide(jetpacks, layer);
-    
-    
+    jetpackActive();
+
 }
 
 /*Add extra's below.

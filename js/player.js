@@ -78,7 +78,5 @@ function playerUpdate(){
     p.animations.stop();
  
   }
-
-  jetpackActive();
 }
 
