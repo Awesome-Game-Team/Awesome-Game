@@ -1,5 +1,5 @@
 # Awesome Game
-This is a collaborative project 
+This is a fork of a collaborative project by metalx1000
 
 
 #Play the Game

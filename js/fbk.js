@@ -1,5 +1,5 @@
-//Code by Kris Occhipinti http://filmsbykris.com
-//GPLv3
+/* Code by Kris Occhipinti http://filmsbykris.com
+GPLv3 */
 
 //fullscreen on click
 function fsClick(){
