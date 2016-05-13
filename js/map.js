@@ -31,6 +31,7 @@ function loadMap(){
 
   //  This resizes the game world to match the layer dimensions
   layer.resizeWorld();
+
 }
 
 //find objects in a Tiled layer that containt a property called "type" equal to a certain value
