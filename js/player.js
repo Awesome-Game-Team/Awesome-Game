@@ -31,8 +31,8 @@ function playerCreate(x,y,pl){
   player.scale.setTo(0.75,0.75);
   //animations
   player.frame = 4;
-  player.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
-  player.animations.add('right', [11,10,9,8,7,6], 10, true);
+  player.animations.add('left', [3,2,1,0], 20, true);
+  player.animations.add('right', [4,5,6,7], 20, true);
   player.body.gravity.y = 500;
   player.body.bounce.y = 0.2;
   player.inputEnabled = true;
