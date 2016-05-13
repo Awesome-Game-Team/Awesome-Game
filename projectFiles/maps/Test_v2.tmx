@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="23" tilewidth="32" tileheight="32" nextobjectid="5">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="23" tilewidth="32" tileheight="32" nextobjectid="8">
  <tileset firstgid="1" name="tileSet" tilewidth="32" tileheight="32" tilecount="12">
   <image source="../../res/tiles.png" trans="ff00ff" width="128" height="96"/>
+  <terraintypes>
+   <terrain name="New Terrain" tile="-1"/>
+  </terraintypes>
+ </tileset>
+ <tileset firstgid="13" name="jetpack" tilewidth="32" tileheight="32" tilecount="1">
+  <image source="../../res/jetpack.png" trans="ff00ff" width="32" height="32"/>
  </tileset>
  <layer name="world" width="200" height="23">
   <data encoding="csv">
@@ -34,5 +40,7 @@
   <object id="4" type="playerStart" x="272.727" y="127.273">
    <ellipse/>
   </object>
+  <object id="5" type="jetpack" gid="13" x="3787.03" y="612.97" width="32" height="32"/>
+  <object id="7" type="jetpack" gid="13" x="2214.3" y="156.727" width="32" height="32"/>
  </objectgroup>
 </map>
