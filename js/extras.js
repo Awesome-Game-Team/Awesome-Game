@@ -41,4 +41,5 @@ function jetpackLoad(x,y){
 function jetpackGet(player, pack){
   player.jet = 100;
   pack.kill();
+  msg("JETPACK!!!");
 }
