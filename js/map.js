@@ -8,7 +8,7 @@ function preloadMap(){
 
 
 function createMap(){
-    game.stage.backgroundColor = '#0099ff';
+    game.stage.backgroundColor = '#77e0ff';
     loadMap();
 }
 
