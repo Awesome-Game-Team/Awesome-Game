@@ -7,7 +7,7 @@ function preloadSfx(){
       
         
     music = "TheGame";
-    game.load.audio('music', [ 'res/music/'+music+'.wav', 'res/music/'+music+'.ogg', 'res/music/'+music+'.mp3']);
+    game.load.audio('music', [ 'res/music/'+music+'.ogg', 'res/music/'+music+'.mp3']);
     
     // sound effect
     game.load.audio('jump', [ 'res/fx/jump.wav',  'res/fx/jump.mp3']);

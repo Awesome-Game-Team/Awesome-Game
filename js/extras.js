@@ -7,7 +7,10 @@ function createExtras(){
     
     jetpacks = game.add.group();
     jetpacks.enableBody = true;
-    jetpackLoad(200,200);
+    var packs = findObjectsByType("jetpack",map);
+    packs.forEach(function(j){
+      jetpackLoad(j.x,j.y);
+    });
     
     
 }
