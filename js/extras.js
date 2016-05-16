@@ -29,12 +29,15 @@ function updateExtras(){
 
 function jetpackActive(){
   if(player.jetpackActive && player.jet > 0){
+    jetSound.play();
     player.body.velocity.y = -200;
     player.jet-=.1;
     var power = Math.round(player.jet);
     if(power == 20 || power == 10||power == 5||power == 0){
       msg("Jetpack\nPower " + power + "%");
     }
+  }else{
+    jetSound.stop();
   }
 }
 
