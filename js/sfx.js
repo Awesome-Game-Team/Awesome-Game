@@ -3,14 +3,16 @@ var mute;
 var mute_btn;
 
 function preloadSfx(){
-    game.load.spritesheet("mute","res/mute.png",64,64);
+    game.load.spritesheet("mute","res/mute.png",32,32);
       
         
     music = "TheGame";
     game.load.audio('music', [ 'res/music/'+music+'.ogg', 'res/music/'+music+'.mp3']);
     
-    // sound effect
-    game.load.audio('jump', [ 'res/fx/jump.wav',  'res/fx/jump.mp3']);
+    // sound effects
+    game.load.audio('jump', [ 'res/fx/jump.ogg',  'res/fx/jump.mp3']);
+    game.load.audio('seed', [ 'res/fx/seed.ogg',  'res/fx/seed.mp3']);
+    game.load.audio('powerup', [ 'res/fx/powerup.ogg',  'res/fx/powerup.mp3']);
       
 }
 
@@ -22,7 +24,7 @@ function createSfx(){
     mute = false;
     mute_btn = game.add.button(0,0, 'mute', muteClick, this);
     mute_btn.fixedToCamera = true;
-    mute_btn.cameraOffset.setTo(game.width - 128, 32);
+    mute_btn.cameraOffset.setTo(game.width - 42, 10);
 }
 
 
