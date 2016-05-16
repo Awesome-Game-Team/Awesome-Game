@@ -10,7 +10,11 @@ function preloadSfx(){
     game.load.audio('music', [ 'res/music/'+music+'.ogg', 'res/music/'+music+'.mp3']);
     
     // sound effect
-    game.load.audio('jump', [ 'res/fx/jump.wav',  'res/fx/jump.mp3']);
+    var sounds = ["jump","jetpack"]
+
+    sounds.forEach(function(s){
+      game.load.audio(s, [ 'res/fx/'+s+'.wav', 'res/fx/'+s+'.ogg', 'res/fx/'+s+'.mp3']);
+    });
       
 }
 
