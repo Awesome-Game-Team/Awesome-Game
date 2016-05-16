@@ -44,6 +44,12 @@ function updateExtras(){
     game.physics.arcade.collide(jetpacks, layer);
     jetpackActive();
     game.physics.arcade.collide(seeds, layer);
+
+    var power = Math.round(player.jet);
+    var txt = "Seeds: " + seedCount + "\n";
+    //if jetpack has power display it
+    if(power > 0){txt += "Jetpack: " + power + "%\n";} 
+    text.setText(txt);
 }
 
 /*Add extra's below.
@@ -54,16 +60,11 @@ function updateExtras(){
 //////////////
 
 /*  Added by Kris */
-
 function jetpackActive(){
   if(player.jetpackActive && player.jet > 0){
     jetSound.play();
     player.body.velocity.y = -200;
     player.jet-=.1;
-    var power = Math.round(player.jet);
-    if(power == 20 || power == 10||power == 5||power == 0){
-      msg("Jetpack\nPower " + power + "%");
-    }
   }else{
     jetSound.stop();
   }
@@ -92,5 +93,4 @@ function seedGet(player, pack){
   pack.kill();
   seedSound.play();
   seedCount++;
-  text.setText("Seeds: " + seedCount);
 }
