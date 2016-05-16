@@ -11,8 +11,7 @@ function createPlayer(){
   players = game.add.group();
   players.enableBody = true;
   playerCreate(100,100,"player");
-    
-    
+   
 }
 
 
@@ -53,6 +52,7 @@ function playerCreate(x,y,pl){
 function playerUpdate(){
   game.physics.arcade.collide(players, layer);
   game.physics.arcade.overlap(players, jetpacks, jetpackGet, null, this);
+  game.physics.arcade.overlap(players, seeds, seedGet, null, this);
 
   var p = player;
   p.body.velocity.x = 0;
