@@ -1,16 +1,14 @@
-
+var pad1;
 var players;
 var player;
 
 function preloadPlayer(){
-      game.load.spritesheet("player","res/player.png",64,64);
-    
-    
+  game.load.spritesheet("player","res/player.png",64,64);
 }
 
 
 function createPlayer(){
-      players = game.add.group();
+  players = game.add.group();
   players.enableBody = true;
   playerCreate(100,100,"player");
     
@@ -19,7 +17,7 @@ function createPlayer(){
 
 
 function updatePlayer(){
-    playerUpdate();
+  playerUpdate();
 }
 
 
@@ -44,7 +42,11 @@ function playerCreate(x,y,pl){
   player.jet = game.input.keyboard.addKey(Phaser.Keyboard.J);
   player.jet.onDown.add(function(){player.jetpackActive = true}, this);
   player.jet.onUp.add(function(){player.jetpackActive = false}, this);
-  
+
+  //gamepad inputs
+  game.input.gamepad.start();
+  pad1 = game.input.gamepad.pad1;
+ 
   game.camera.follow(player);
 }
 
@@ -55,23 +57,31 @@ function playerUpdate(){
   var p = player;
   p.body.velocity.x = 0;
 
-  if (cursors.up.isDown)
-  {
-    if (p.body.onFloor())
-    {
-      p.body.velocity.y = -400;
-      jumpSound = game.add.audio('jump');
-      jumpSound.play();
-    }
+  //jump
+  if (cursors.up.isDown && p.body.onFloor()){
+    playerJump(p);
   }
 
-  if (cursors.left.isDown)
-  {
+  //gamepad jump
+  if(pad1.justPressed(Phaser.Gamepad.XBOX360_A) && p.body.onFloor()){
+    playerJump(p);
+  }
+
+  if(pad1.justPressed(Phaser.Gamepad.XBOX360_B)){
+    player.jetpackActive = true;
+  }else if(pad1.justReleased(Phaser.Gamepad.XBOX360_B)){
+    player.jetpackActive = false;
+  }
+
+  //move
+  if (cursors.left.isDown
+  || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) 
+  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1){
     p.body.velocity.x = -150;
     p.animations.play('left');
-  }
-  else if (cursors.right.isDown)
-  {
+  }else if (cursors.right.isDown
+  || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) 
+  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1){
     p.body.velocity.x = 150;
     p.animations.play('right');
   }else{
@@ -80,3 +90,8 @@ function playerUpdate(){
   }
 }
 
+function playerJump(p){
+  p.body.velocity.y = -400;
+  jumpSound = game.add.audio('jump');
+  jumpSound.play();
+}
