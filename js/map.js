@@ -32,9 +32,13 @@ function loadMap(){
 
   /* The first parameter is the tileset name, as specified in the Tiled map editor (and in the tilemap json file)
      The second parameter maps this name to the Phaser.Cache key */
-  map.addTilesetImage('tileSet', 'tiles');
   map.addTilesetImage('tux', 'tux');
-
+  map.addTilesetImage('tileSet', 'tiles');
+  
+  /* Creates a layer that the character will not collide with.
+  The layer name 'backdrop' is specified in the Tiled map editor (and in the tilemap json file).
+  We must create this layer first in order for other layers to apear on top of it */
+  map.createLayer('backdrop');
   
   /* Creates a layer from the World layer in the map data.
      A Layer is effectively like a Phaser.Sprite, so is added to the display list. */
@@ -43,10 +47,6 @@ function loadMap(){
   
   //  This resizes the game world to match the layer dimensions
   layer.resizeWorld();
-  
-  /* Creates a layer that the character will not collide with.
-     The layer name 'backdrop' is specified in the Tiled map editor (and in the tilemap json file) */
-  map.createLayer('backdrop');
 }
 
 //find objects in a Tiled layer that containt a property called "type" equal to a certain value

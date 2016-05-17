@@ -1,6 +1,8 @@
 var seedCount;
 var seedSound;
 var powerupSound;
+var text;
+var play_flag = 0;
 
 function preloadExtras(){
     game.load.image('jetpack', 'res/jetpack.png');
@@ -48,11 +50,17 @@ function updateExtras(){
 /*  Added by Kris */
 function jetpackActive(){
   if(player.jetpackActive && player.jetLevel > 0){
-    jetSound.play();
+    // trigger sound loop when jetpackActive() is first activated
+    if (play_flag == 0){ jetSound.play(); }
+    play_flag = 1;
+    
     player.body.velocity.y = -200;
     player.jetLevel-=.1;
-  }else{
+  }
+  else{
+    // stop sound loop and reset play_flag
     jetSound.stop();
+    play_flag = 0;
   }
 }
 

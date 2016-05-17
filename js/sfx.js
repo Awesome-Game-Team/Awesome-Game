@@ -21,6 +21,7 @@ function createSfx(){
     musicLoad();
 
     jetSound = game.add.audio('jetpack');
+    jetSound.loopFull();
 }
 
 
