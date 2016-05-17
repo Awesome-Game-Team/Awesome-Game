@@ -26,7 +26,7 @@ function createHUD(){
 
 function updateHUD(){
   //HUD text
-  var power = Math.round(player.jet);
+  var power = Math.round(player.jetLevel);
   var txt = "Seeds: " + seedCount + "\n";
   //if jetpack has power display it
   if(power > 0){txt += "Jetpack: " + power + "%\n";}

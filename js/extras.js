@@ -47,10 +47,10 @@ function updateExtras(){
 
 /*  Added by Kris */
 function jetpackActive(){
-  if(player.jetpackActive && player.jet > 0){
+  if(player.jetpackActive && player.jetLevel > 0){
     jetSound.play();
     player.body.velocity.y = -200;
-    player.jet-=.1;
+    player.jetLevel-=.1;
   }else{
     jetSound.stop();
   }
@@ -61,7 +61,10 @@ function jetpackLoad(x,y){
 }
 
 function jetpackGet(player, pack){
-  player.jet = 100;
+  player.jetLevel += 50;
+  if(player.jetLevel > 100){
+    player.jetLevel = 100;
+  }
   pack.kill();
   powerupSound.play();
   msg("JETPACK!!!");
