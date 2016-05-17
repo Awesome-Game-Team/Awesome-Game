@@ -6,19 +6,17 @@ function preloadPlayer(){
   game.load.spritesheet("player","res/player.png",64,64);
 }
 
-
 function createPlayer(){
   players = game.add.group();
   players.enableBody = true;
   playerCreate(100,100,"player");
-   
+  // Start facing right, legs straight
+  player.frame = 4;
 }
-
 
 function updatePlayer(){
   playerUpdate();
 }
-
 
 function playerCreate(x,y,pl){
   //get player start position from object layer 
@@ -26,8 +24,8 @@ function playerCreate(x,y,pl){
   player = players.create(pos[0].x, pos[0].y, pl);
   player.anchor.setTo(0.5,0.5);
   player.scale.setTo(0.75,0.75);
+
   //animations
-  player.frame = 4;
   player.animations.add('left', [3,2,1,0], 20, true);
   player.animations.add('right', [4,5,6,7], 20, true);
   player.body.gravity.y = 500;
@@ -70,25 +68,42 @@ function playerUpdate(){
 
   if(pad1.justPressed(Phaser.Gamepad.XBOX360_B)){
     player.jetpackActive = true;
-  }else if(pad1.justReleased(Phaser.Gamepad.XBOX360_B)){
+  }
+  else if(pad1.justReleased(Phaser.Gamepad.XBOX360_B)){
     player.jetpackActive = false;
   }
 
   //move
-  if (cursors.left.isDown
-  || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) 
+  if (cursors.left.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT)
   || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1){
-    p.body.velocity.x = -150;
-    p.animations.play('left');
-  }else if (cursors.right.isDown
-  || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) 
-  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1){
-    p.body.velocity.x = 150;
-    p.animations.play('right');
-  }else{
-    p.animations.stop();
- 
+	  p.body.velocity.x = -150;
+	  
+      if ( p.body.onFloor() ){
+		p.animations.play('left');
+      }
+      // If not touching the floor, stop animation and set knees bent left
+      else{
+      	p.animations.stop();
+      	player.frame = 0;
+      }
   }
+  else if (cursors.right.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) 
+  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1){
+      p.body.velocity.x = 150;
+	  
+      if ( p.body.onFloor() ){
+		p.animations.play('right');
+      }
+      // If not touching the floor, stop animation and set knees bent right
+      else{
+      	p.animations.stop();
+      	player.frame = 7;
+      }
+  }
+  else{
+      p.animations.stop();
+  }
+  
 }
 
 function playerJump(p){
