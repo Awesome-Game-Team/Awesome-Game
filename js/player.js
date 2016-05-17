@@ -24,13 +24,13 @@ function updatePlayer(){
   p.body.velocity.x = 0;
 
   //jump
-  if (cursors.up.isDown && p.body.onFloor()){
-    playerJump(p);
+  if (cursors.up.isDown){
+    playerJump();
   }
 
   //gamepad jump
-  if(pad1.justPressed(Phaser.Gamepad.XBOX360_A) && p.body.onFloor()){
-    playerJump(p);
+  if(pad1.justPressed(Phaser.Gamepad.XBOX360_A)){
+    playerJump();
   }
 
   if(pad1.justPressed(Phaser.Gamepad.XBOX360_B)){
@@ -98,9 +98,11 @@ function playerRight(){
   player.animations.play('right');
 }
 
-function playerJump(p){
-  p.body.velocity.y = -400;
-  jumpSound = game.add.audio('jump');
-  jumpSound.play();
+function playerJump(){
+  if(player.body.onFloor()){
+    player.body.velocity.y = -400;
+    jumpSound = game.add.audio('jump');
+    jumpSound.play();
+  }
 }
 
