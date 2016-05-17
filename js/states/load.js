@@ -6,7 +6,7 @@ var loadState = {
         preloadPlayer();
         preloadExtras();
         preloadInput();
-        preloadText();
+        preloadHUD();
     },
     
     create : function(){

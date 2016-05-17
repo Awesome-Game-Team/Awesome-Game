@@ -4,7 +4,7 @@ var mute_btn;
 var jetSound;
 
 function preloadSfx(){
-    game.load.spritesheet("mute","res/mute.png",32,32);
+//    game.load.spritesheet("mute","res/mute.png",32,32);
       
         
     music = "TheGame";
