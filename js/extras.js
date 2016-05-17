@@ -1,11 +1,8 @@
 var seedCount;
 var seedSound;
 var powerupSound;
-<<<<<<< HEAD
 var text;
 var play_flag = 0;
-=======
->>>>>>> metalx1000/master
 
 function preloadExtras(){
     game.load.image('jetpack', 'res/jetpack.png');
