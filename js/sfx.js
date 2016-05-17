@@ -4,9 +4,6 @@ var mute_btn;
 var jetSound;
 
 function preloadSfx(){
-    game.load.spritesheet("mute","res/mute.png",32,32);
-      
-        
     music = "TheGame";
     game.load.audio('music', [ 'res/music/'+music+'.ogg', 'res/music/'+music+'.mp3']);
     
@@ -23,6 +20,7 @@ function preloadSfx(){
 function createSfx(){
     musicLoad();
 
+<<<<<<< HEAD
     // Mute  
     mute = false;
     mute_btn = game.add.button(0,0, 'mute', muteClick, this);
@@ -31,6 +29,9 @@ function createSfx(){
     
     jetSound = game.add.audio('jetpack');
     jetSound.loopFull();
+=======
+    jetSound = game.add.audio('jetpack');
+>>>>>>> metalx1000/master
 }
 
 

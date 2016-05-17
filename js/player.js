@@ -34,6 +34,7 @@ function playerCreate(x,y,pl){
   player.body.bounce.y = 0.2;
   player.inputEnabled = true;
   player.body.collideWorldBounds = true;
+  player.jetLevel = 0;
   player.jetpack = 0;
   player.jetpackActive = false;
   

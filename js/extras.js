@@ -1,8 +1,11 @@
 var seedCount;
 var seedSound;
 var powerupSound;
+<<<<<<< HEAD
 var text;
 var play_flag = 0;
+=======
+>>>>>>> metalx1000/master
 
 function preloadExtras(){
     game.load.image('jetpack', 'res/jetpack.png');
@@ -31,14 +34,6 @@ function createExtras(){
     
     seedSound = game.add.audio('seed');
     seedCount = 0;
-    text = game.add.text(0, 0, "Seeds: 0");
-    text.font = 'Mono';
-    text.fontSize = 25;
-    text.stroke = '#000000';
-    text.strokeThickness = 4;
-    text.fill = '#feee0b';
-    text.fixedToCamera = true;
-    text.cameraOffset.setTo(10, 10);
 }
 
 function updateExtras(){
@@ -46,11 +41,6 @@ function updateExtras(){
     jetpackActive();
     game.physics.arcade.collide(seeds, layer);
 
-    var power = Math.round(player.jet);
-    var txt = "Seeds: " + seedCount + "\n";
-    //if jetpack has power display it
-    if(power > 0){txt += "Jetpack: " + power + "%\n";} 
-    text.setText(txt);
 }
 
 /*Add extra's below.
@@ -62,6 +52,7 @@ function updateExtras(){
 
 /*  Added by Kris */
 function jetpackActive(){
+<<<<<<< HEAD
 
   if(player.jetpackActive && player.jet > 0){
     // trigger sound loop when jetpackActive() is first activated
@@ -73,6 +64,13 @@ function jetpackActive(){
   }
   else{
     // stop sound loop and reset play_flag
+=======
+  if(player.jetpackActive && player.jetLevel > 0){
+    jetSound.play();
+    player.body.velocity.y = -200;
+    player.jetLevel-=.1;
+  }else{
+>>>>>>> metalx1000/master
     jetSound.stop();
     play_flag = 0;
   }
@@ -83,7 +81,10 @@ function jetpackLoad(x,y){
 }
 
 function jetpackGet(player, pack){
-  player.jet = 100;
+  player.jetLevel += 50;
+  if(player.jetLevel > 100){
+    player.jetLevel = 100;
+  }
   pack.kill();
   powerupSound.play();
   msg("JETPACK!!!");
