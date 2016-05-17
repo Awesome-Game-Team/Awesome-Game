@@ -42,15 +42,15 @@ function updatePlayer(){
   //move
   if (cursors.left.isDown
   || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) 
-  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1){
+  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1
+  || leftOSC){
     playerLeft();
   }else if (cursors.right.isDown
   || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) 
-  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1){
+  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1
+  || rightOSC){
     playerRight();
-  }
-
-  if(player.body.velocity.x == 0){
+  }else{
     p.animations.stop();
   }
 
