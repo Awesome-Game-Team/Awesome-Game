@@ -1,7 +1,6 @@
 var seedCount;
 var seedSound;
 var powerupSound;
-var text;
 
 function preloadExtras(){
     game.load.image('jetpack', 'res/jetpack.png');
@@ -30,14 +29,6 @@ function createExtras(){
     
     seedSound = game.add.audio('seed');
     seedCount = 0;
-    text = game.add.text(0, 0, "Seeds: 0");
-    text.font = 'Mono';
-    text.fontSize = 25;
-    text.stroke = '#000000';
-    text.strokeThickness = 4;
-    text.fill = '#feee0b';
-    text.fixedToCamera = true;
-    text.cameraOffset.setTo(10, 10);
 }
 
 function updateExtras(){
@@ -45,11 +36,6 @@ function updateExtras(){
     jetpackActive();
     game.physics.arcade.collide(seeds, layer);
 
-    var power = Math.round(player.jet);
-    var txt = "Seeds: " + seedCount + "\n";
-    //if jetpack has power display it
-    if(power > 0){txt += "Jetpack: " + power + "%\n";} 
-    text.setText(txt);
 }
 
 /*Add extra's below.
