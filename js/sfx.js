@@ -20,7 +20,6 @@ function preloadSfx(){
 function createSfx(){
     musicLoad();
 
-<<<<<<< HEAD
     // Mute  
     mute = false;
     mute_btn = game.add.button(0,0, 'mute', muteClick, this);
@@ -29,9 +28,6 @@ function createSfx(){
     
     jetSound = game.add.audio('jetpack');
     jetSound.loopFull();
-=======
-    jetSound = game.add.audio('jetpack');
->>>>>>> metalx1000/master
 }
 
 

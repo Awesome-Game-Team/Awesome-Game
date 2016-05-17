@@ -52,25 +52,17 @@ function updateExtras(){
 
 /*  Added by Kris */
 function jetpackActive(){
-<<<<<<< HEAD
 
-  if(player.jetpackActive && player.jet > 0){
+  if(player.jetpackActive && player.jetLevel > 0){
     // trigger sound loop when jetpackActive() is first activated
     if (play_flag == 0){ jetSound.play(); }
     play_flag = 1;
     
     player.body.velocity.y = -200;
-    player.jet-=.1;
+    player.jetLevel-=.1;
   }
   else{
     // stop sound loop and reset play_flag
-=======
-  if(player.jetpackActive && player.jetLevel > 0){
-    jetSound.play();
-    player.body.velocity.y = -200;
-    player.jetLevel-=.1;
-  }else{
->>>>>>> metalx1000/master
     jetSound.stop();
     play_flag = 0;
   }
