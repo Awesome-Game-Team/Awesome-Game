@@ -1,10 +1,12 @@
 var msgText;
 var msgTimeout;
 var HUDtext;
+var fs_btn;
 
 function preloadHUD(){
   game.load.bitmapFont('font1', 'res/fonts/set1/font.png', 'res/fonts/set1/font.fnt');
   game.load.spritesheet("mute","res/mute.png",32,32);
+  game.load.image("fullscreen","res/fullscreen.png",32,32);
 
 }
 
@@ -12,6 +14,7 @@ function createHUD(){
   createMuteBtn();
   createMSG();
   createHUDtext();
+  createFSBtn();
 
   //set timeout
   msgTimeout = game.time.now;
@@ -50,6 +53,13 @@ function createMuteBtn(){
   mute_btn.cameraOffset.setTo(game.width - 42, 10);
 }
 
+function createFSBtn(){
+  fs_btn = game.add.button(0,0, 'fullscreen', fullscreen, this);
+  fs_btn.fixedToCamera = true;
+  fs_btn.cameraOffset.setTo(game.width - 84, 10);
+}
+
+
 function createMSG(){
   msgText = game.add.bitmapText(0,0, 'font1', '', 64);
   //center message on screen
@@ -69,3 +79,4 @@ function createHUDtext(){
   HUDtext.fixedToCamera = true;
   HUDtext.cameraOffset.setTo(10, 10);
 }
+
