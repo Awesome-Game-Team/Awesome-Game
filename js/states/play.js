@@ -7,6 +7,7 @@ var playState = {
         createExtras();
         createInput();
         createHUD();
+        createOSC();
      
     },
     
@@ -17,5 +18,6 @@ var playState = {
         updateExtras();
         updateInput();
         updateHUD();
+        updateOSC();
     },
 };

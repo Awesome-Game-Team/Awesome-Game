@@ -7,6 +7,7 @@ var loadState = {
         preloadExtras();
         preloadInput();
         preloadHUD();
+        preloadOSC();
     },
     
     create : function(){

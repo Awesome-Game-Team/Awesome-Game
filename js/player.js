@@ -16,7 +16,45 @@ function createPlayer(){
 
 
 function updatePlayer(){
-  playerUpdate();
+  game.physics.arcade.collide(players, layer);
+  game.physics.arcade.overlap(players, jetpacks, jetpackGet, null, this);
+  game.physics.arcade.overlap(players, seeds, seedGet, null, this);
+
+  var p = player;
+  p.body.velocity.x = 0;
+
+  //jump
+  if (cursors.up.isDown && p.body.onFloor()){
+    playerJump(p);
+  }
+
+  //gamepad jump
+  if(pad1.justPressed(Phaser.Gamepad.XBOX360_A) && p.body.onFloor()){
+    playerJump(p);
+  }
+
+  if(pad1.justPressed(Phaser.Gamepad.XBOX360_B)){
+    player.jetpackActive = true;
+  }else if(pad1.justReleased(Phaser.Gamepad.XBOX360_B)){
+    player.jetpackActive = false;
+  }
+
+  //move
+  if (cursors.left.isDown
+  || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) 
+  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1){
+    playerLeft();
+  }else if (cursors.right.isDown
+  || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) 
+  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1){
+    playerRight();
+  }
+
+  if(player.body.velocity.x == 0){
+    p.animations.stop();
+  }
+
+
 }
 
 
@@ -50,45 +88,14 @@ function playerCreate(x,y,pl){
   game.camera.follow(player);
 }
 
-function playerUpdate(){
-  game.physics.arcade.collide(players, layer);
-  game.physics.arcade.overlap(players, jetpacks, jetpackGet, null, this);
-  game.physics.arcade.overlap(players, seeds, seedGet, null, this);
+function playerLeft(){
+  player.body.velocity.x = -150;
+  player.animations.play('left');
+}
 
-  var p = player;
-  p.body.velocity.x = 0;
-
-  //jump
-  if (cursors.up.isDown && p.body.onFloor()){
-    playerJump(p);
-  }
-
-  //gamepad jump
-  if(pad1.justPressed(Phaser.Gamepad.XBOX360_A) && p.body.onFloor()){
-    playerJump(p);
-  }
-
-  if(pad1.justPressed(Phaser.Gamepad.XBOX360_B)){
-    player.jetpackActive = true;
-  }else if(pad1.justReleased(Phaser.Gamepad.XBOX360_B)){
-    player.jetpackActive = false;
-  }
-
-  //move
-  if (cursors.left.isDown
-  || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) 
-  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1){
-    p.body.velocity.x = -150;
-    p.animations.play('left');
-  }else if (cursors.right.isDown
-  || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) 
-  || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1){
-    p.body.velocity.x = 150;
-    p.animations.play('right');
-  }else{
-    p.animations.stop();
- 
-  }
+function playerRight(){
+  player.body.velocity.x = 150;
+  player.animations.play('right');
 }
 
 function playerJump(p){
@@ -96,3 +103,4 @@ function playerJump(p){
   jumpSound = game.add.audio('jump');
   jumpSound.play();
 }
+
