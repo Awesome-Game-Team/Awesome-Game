@@ -6,7 +6,8 @@ var playState = {
         createPlayer();
         createExtras();
         createInput();
-        createText();
+        createHUD();
+        createOSC();
      
     },
     
@@ -16,6 +17,7 @@ var playState = {
         updatePlayer();
         updateExtras();
         updateInput();
-        updateText();
+        updateHUD();
+        updateOSC();
     },
 };
