@@ -1,6 +1,13 @@
+var seedCount;
+var seedSound;
+var powerupSound;
+var text;
+var play_flag = 0;
+
 function preloadExtras(){
     game.load.image('jetpack', 'res/jetpack.png');
-    
+    game.load.image('seed', 'res/seed.png');
+    game.load.image('superseed', 'res/super_seed.png');
 }
 
 function createExtras(){
@@ -12,44 +19,76 @@ function createExtras(){
       jetpackLoad(j.x,j.y);
     });
     
+    powerupSound = game.add.audio('powerup');
+
     
+    seeds = game.add.group();
+    seeds.enableBody = true;
+    var packs = findObjectsByType("seed",map);
+    packs.forEach(function(s){
+      seedLoad(s.x,s.y);
+    });
+    
+    seedSound = game.add.audio('seed');
+    seedCount = 0;
 }
 
 function updateExtras(){
     game.physics.arcade.collide(jetpacks, layer);
     jetpackActive();
+    game.physics.arcade.collide(seeds, layer);
 
 }
 
 /*Add extra's below.
   Be sure to include the required code in preload, create, and update above */
 
-/*Jet Pack
-  Added by Kris */
+//////////////
+// Jet Pack //
+//////////////
 
+/*  Added by Kris */
 function jetpackActive(){
-  if(player.jetpackActive && player.jet > 0){
-    jetSound.play();
+
+  if(player.jetpackActive && player.jetLevel > 0){
+    // trigger sound loop when jetpackActive() is first activated
+    if (play_flag == 0){ jetSound.play(); }
+    play_flag = 1;
+    
     player.body.velocity.y = -200;
-    player.jet-=.1;
-    var power = Math.round(player.jet);
-    if(power == 20 || power == 10||power == 5||power == 0){
-      msg("Jetpack\nPower " + power + "%");
-    }
-  }else{
+    player.jetLevel-=.1;
+  }
+  else{
+    // stop sound loop and reset play_flag
     jetSound.stop();
+    play_flag = 0;
   }
 }
 
 function jetpackLoad(x,y){
-  
   var pack = jetpacks.create(x, y,"jetpack");
-  pack.body.gravity.y = 500;
-  pack.body.bounce.y = 0.2;
 }
 
 function jetpackGet(player, pack){
-  player.jet = 100;
+  player.jetLevel += 50;
+  if(player.jetLevel > 100){
+    player.jetLevel = 100;
+  }
   pack.kill();
+  powerupSound.play();
   msg("JETPACK!!!");
+}
+
+//////////
+// Seed //
+//////////
+
+function seedLoad(x,y){
+  var pack = seeds.create(x, y,"seed");
+}
+
+function seedGet(player, pack){
+  pack.kill();
+  seedSound.play();
+  seedCount++;
 }
