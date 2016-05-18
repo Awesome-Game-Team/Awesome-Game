@@ -1,6 +1,8 @@
 //On screen controls for touch screen
 var leftOSC = false;
 var rightOSC = false;
+var jetBTN;
+var isMobile = mobileCheck();
 
 function preloadOSC(){
   var images = ["left","right","trigger"];
@@ -11,9 +13,11 @@ function preloadOSC(){
 
 function createOSC(){
   //only load buttons if in mobile browser
-  if(mobileCheck()){
+  if(isMobile){
     btnCreate();
   }
+
+  createJetBTN();
 }
 
 function btnCreate(){
@@ -46,6 +50,16 @@ function btnCreate(){
   jumpBTN.alpha = .5;
 }
 
+function createJetBTN(){
+  jetBTN = game.add.button(game.width - 96, game.height - 128, 'trigger', function(){player.jetpackActive = true}, this, 0, 1, 0, 1);
+  jetBTN.events.onInputOver.add(function(){player.jetpackActive = true},this);
+  jetBTN.events.onInputDown.add(function(){player.jetpackActive = true},this);
+  jetBTN.events.onInputOut.add(function(){player.jetpackActive = false;},this);
+  jetBTN.events.onInputUp.add(function(){player.jetpackActive = false;},this);
+  jetBTN.fixedToCamera = true;
+  jetBTN.scale.setTo(.5,.5);
+  jetBTN.alpha = .5;
+}
 
 
 function updateOSC(){
@@ -53,6 +67,12 @@ function updateOSC(){
     playerLeft();
   }else if(rightOSC){
     playerRight();
+  }
+
+  if(!jetBTN.visible && player.jetLevel > 0 && isMobile){
+    jetBTN.visible = true;
+  }else if (player.jetLevel <= 0){
+    jetBTN.visible = false;
   }
 }
 
