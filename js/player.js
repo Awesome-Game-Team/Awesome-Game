@@ -90,12 +90,20 @@ function playerCreate(x,y,pl){
 
 function playerLeft(){
   player.body.velocity.x = -150;
-  player.animations.play('left');
+  if(player.body.onFloor()){
+    player.animations.play('left');
+  }else{
+    player.frame = 1;
+  }
 }
 
 function playerRight(){
   player.body.velocity.x = 150;
-  player.animations.play('right');
+  if(player.body.onFloor()){
+    player.animations.play('right');
+  }else{
+    player.frame = 6;
+  }
 }
 
 function playerJump(){

@@ -49,6 +49,7 @@ function updateExtras(){
 
 /*  Added by Kris */
 function jetpackActive(){
+
   if(player.jetpackActive && player.jetLevel > 0){
     // trigger sound loop when jetpackActive() is first activated
     if (play_flag == 0){ jetSound.play(); }
