@@ -5,8 +5,10 @@ var fs_btn;
 
 function preloadHUD(){
   game.load.bitmapFont('font1', 'res/fonts/set1/font.png', 'res/fonts/set1/font.fnt');
-  game.load.spritesheet("mute","res/mute.png",32,32);
-  game.load.spritesheet("fullscreen","res/fullscreen.png",32,32);
+  var sprites = ['mute','fullscreen'];
+  sprites.forEach(function(s){
+    game.load.spritesheet(s,"res/hud/"+s+".png",32,32);
+  });
 
 }
 
