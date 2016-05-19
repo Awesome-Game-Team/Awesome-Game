@@ -2,6 +2,7 @@ var msgText;
 var msgTimeout;
 var HUDtext;
 var fs_btn;
+var debug = false;
 
 function preloadHUD(){
   game.load.bitmapFont('font1', 'res/fonts/set1/font.png', 'res/fonts/set1/font.fnt');
@@ -24,6 +25,8 @@ function createHUD(){
   //load Startup Text
   msg("GO!!!");
 
+  //advanced timing for FPS count
+  game.time.advancedTiming = true;
 }
 
 function updateHUD(){
@@ -32,7 +35,8 @@ function updateHUD(){
   var txt = "Seeds: " + seedCount + "\n";
   //if jetpack has power display it
   if(power > 0){txt += "Jetpack: " + power + "%\n";}
-  
+  if(debug){txt += "FPS: " + game.time.fps + "\n";} 
+
   HUDtext.setText(txt);
 
   //clear text message after timeout
