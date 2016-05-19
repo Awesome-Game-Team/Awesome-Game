@@ -69,7 +69,7 @@ function playerCreate(x,y,pl){
   player.animations.add('left', [3,2,1,0], 20, true);
   player.animations.add('right', [4,5,6,7], 20, true);
   player.body.gravity.y = 500;
-  player.body.bounce.y = 0.2;
+  player.body.bounce.y = 0;
   player.inputEnabled = true;
   player.body.collideWorldBounds = true;
   player.jetLevel = 0;
