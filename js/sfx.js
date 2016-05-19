@@ -43,14 +43,3 @@ function musicLoad(){
   music.loopFull();
 }
 
-function muteClick(){
-  if(mute == false){
-    mute = true;
-    music.stop();
-    mute_btn.frame = 1;
-  }else{
-    mute = false;
-    music.play();
-    mute_btn.frame = 0;
-  }
-}
