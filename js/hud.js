@@ -32,6 +32,7 @@ function updateHUD(){
   var txt = "Seeds: " + seedCount + "\n";
   //if jetpack has power display it
   if(power > 0){txt += "Jetpack: " + power + "%\n";}
+  
   HUDtext.setText(txt);
 
   //clear text message after timeout
