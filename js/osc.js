@@ -17,6 +17,7 @@ function createOSC(){
     btnCreate();
   }
 
+  createShootBTN();
   createJetBTN();
 }
 
@@ -48,6 +49,9 @@ function btnCreate(){
   jumpBTN.fixedToCamera = true;
   jumpBTN.scale.setTo(.5,.5);  
   jumpBTN.alpha = .5;
+}
+
+function createShootBTN(){
 
   //shoot button
   shootBTN = game.add.button(game.width - 32 * 5, game.height - 64, 'trigger', null, this, 0, 1, 0, 1);
