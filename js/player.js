@@ -84,7 +84,7 @@ function playerCreate(x,y,pl){
 
   //shootSeeds
   player.shootSeeds = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-  player.shootSeeds.onDown.add(function(){shootSeed(player)},this);
+  player.shootSeeds.onDown.add(playerShootSeed,this);
   //gamepad inputs
   game.input.gamepad.start();
   pad1 = game.input.gamepad.pad1;
@@ -120,3 +120,9 @@ function playerJump(){
   }
 }
 
+function playerShootSeed(){
+  if(seedCount > 0){
+    shootSeed(player);
+    seedCount-=1;
+  }
+}
