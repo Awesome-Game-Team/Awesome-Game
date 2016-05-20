@@ -1,7 +1,7 @@
 //On screen controls for touch screen
 var leftOSC = false;
 var rightOSC = false;
-var jetBTN;
+var jetBTN, shootBTN;
 var isMobile = mobileCheck();
 
 function preloadOSC(){
@@ -13,7 +13,7 @@ function preloadOSC(){
 
 function createOSC(){
   //only load buttons if in mobile browser
-  if(isMobile){
+  if(isMobile || debug){
     btnCreate();
   }
 
@@ -48,6 +48,14 @@ function btnCreate(){
   jumpBTN.fixedToCamera = true;
   jumpBTN.scale.setTo(.5,.5);  
   jumpBTN.alpha = .5;
+
+  //shoot button
+  shootBTN = game.add.button(game.width - 32 * 5, game.height - 64, 'trigger', null, this, 0, 1, 0, 1);
+  shootBTN.events.onInputOver.add(playerShootSeed,this);
+  shootBTN.events.onInputDown.add(playerShootSeed,this);
+  shootBTN.fixedToCamera = true;
+  shootBTN.scale.setTo(.5,.5);
+  shootBTN.alpha = .5;
 }
 
 function createJetBTN(){
@@ -69,10 +77,16 @@ function updateOSC(){
     playerRight();
   }
 
-  if(!jetBTN.visible && player.jetLevel > 0 && isMobile){
+  if(!jetBTN.visible && player.jetLevel > 0 && isMobile||debug){
     jetBTN.visible = true;
   }else if (player.jetLevel <= 0){
     jetBTN.visible = false;
+  }
+
+  if(!shootBTN.visible && seedCount > 0 && isMobile||debug){
+    shootBTN.visible = true;
+  }else if (seedCount <= 0){
+    shootBTN.visible = false;
   }
 }
 
