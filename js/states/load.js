@@ -8,6 +8,7 @@ var loadState = {
         preloadInput();
         preloadHUD();
         preloadOSC();
+        preloadWeapons();
     },
     
     create : function(){

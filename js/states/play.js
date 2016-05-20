@@ -8,6 +8,7 @@ var playState = {
         createInput();
         createHUD();
         createOSC();
+        createWeapons();
      
     },
     
@@ -19,5 +20,6 @@ var playState = {
         updateInput();
         updateHUD();
         updateOSC();
+        updateWeapons();
     },
 };

@@ -62,8 +62,8 @@ function playerCreate(x,y,pl){
   //get player start position from object layer 
   var pos = findObjectsByType('playerStart', map);
   player = players.create(pos[0].x, pos[0].y, pl);
-  player.anchor.setTo(0.5,0.5);
   player.scale.setTo(0.75,0.75);
+  player.anchor.setTo(0.5,0.5);
   //animations
   player.frame = 4;
   player.animations.add('left', [3,2,1,0], 20, true);
@@ -75,12 +75,16 @@ function playerCreate(x,y,pl){
   player.jetLevel = 0;
   player.jetpack = 0;
   player.jetpackActive = false;
-  
+  player.direction = "right"; 
   //keyboard inputs
+  //jetpack
   player.jet = game.input.keyboard.addKey(Phaser.Keyboard.J);
   player.jet.onDown.add(function(){player.jetpackActive = true}, this);
   player.jet.onUp.add(function(){player.jetpackActive = false}, this);
 
+  //shootSeeds
+  player.shootSeeds = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+  player.shootSeeds.onDown.add(function(){shootSeed(player)},this);
   //gamepad inputs
   game.input.gamepad.start();
   pad1 = game.input.gamepad.pad1;
@@ -90,6 +94,7 @@ function playerCreate(x,y,pl){
 
 function playerLeft(){
   player.body.velocity.x = -150;
+  player.direction = "left";//for weapons
   if(player.body.onFloor()){
     player.animations.play('left');
   }else{
@@ -99,6 +104,7 @@ function playerLeft(){
 
 function playerRight(){
   player.body.velocity.x = 150;
+  player.direction = "right"; //for weapons
   if(player.body.onFloor()){
     player.animations.play('right');
   }else{
