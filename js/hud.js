@@ -2,7 +2,7 @@ var msgText;
 var msgTimeout;
 var HUDtext;
 var fs_btn;
-var debug = false;
+var debug = getURLvar('debug');
 
 function preloadHUD(){
   game.load.bitmapFont('font1', 'res/fonts/set1/font.png', 'res/fonts/set1/font.fnt');
