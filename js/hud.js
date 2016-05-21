@@ -14,10 +14,10 @@ function preloadHUD(){
 }
 
 function createHUD(){
+  createFSBtn();
   createMuteBtn();
   createMSG();
   createHUDtext();
-  createFSBtn();
 
   //set timeout
   msgTimeout = game.time.now;
