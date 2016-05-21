@@ -1,5 +1,6 @@
 var cursors;
 var fs = false;
+
 function preloadInput(){
 }
 
@@ -7,7 +8,10 @@ function preloadInput(){
 function createInput(){
     //go fullscreen on click
     fsClick(); 
-    //resizeGame(); //fit window width
+    var fitScreen = getURLvar('fitScreen');
+    if(fitScreen){
+      resizeGame(); //fit window width
+    }
     cursors = game.input.keyboard.createCursorKeys(); 
 }
 
@@ -23,7 +27,8 @@ function resizeGame() {
   var width = window.innerWidth;
   game.width = width;
   game.height = height;
-  //game.camera.setSize(width, height);
+  game.camera.setSize(width, height);
+  game.camera.setBoundsToWorld();
   //game.world.setBounds(0, 0, width, height);
   //game.stage.bounds.width = width;
   //game.stage.bounds.height = height;
