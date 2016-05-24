@@ -1,5 +1,5 @@
 var map;
-var layer;
+var layer, layerbackdrop;
 
 function preloadMap(){
     game.load.tilemap('map', 'res/map.json', null, Phaser.Tilemap.TILED_JSON);
@@ -28,7 +28,7 @@ function loadMap(){
   /* Creates a layer that the character will not collide with.
   The layer name 'backdrop' is specified in the Tiled map editor (and in the tilemap json file).
   We must create this layer first in order for other layers to apear on top of it */
-  map.createLayer('backdrop');
+  layerbackdrop = map.createLayer('backdrop');
   
   /* Creates a layer from the World layer in the map data.
      A Layer is effectively like a Phaser.Sprite, so is added to the display list. */

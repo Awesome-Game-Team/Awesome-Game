@@ -29,8 +29,7 @@ function resizeGame() {
   game.height = height;
   game.camera.setSize(width, height);
   game.camera.setBoundsToWorld();
-  //game.world.setBounds(0, 0, width, height);
-  //game.stage.bounds.width = width;
-  //game.stage.bounds.height = height;
   game.renderer.resize(width, height);
+  layer.resize(width, height);
+  layerbackdrop.resize(width, height);
 }
