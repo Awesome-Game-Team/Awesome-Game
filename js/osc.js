@@ -2,7 +2,6 @@
 var leftOSC = false;
 var rightOSC = false;
 var jetBTN, shootBTN;
-var isMobile = mobileCheck();
 
 function preloadOSC(){
   var images = ["left","right","trigger"];
@@ -13,7 +12,7 @@ function preloadOSC(){
 
 function createOSC(){
   //only load buttons if in mobile browser
-  if(isMobile || debug){
+  if(!game.device.desktop || debug){
     btnCreate();
   }
 
@@ -81,31 +80,16 @@ function updateOSC(){
     playerRight();
   }
 
-  if(!jetBTN.visible && player.jetLevel > 0 && isMobile||debug){
+  if(!jetBTN.visible && player.jetLevel > 0 && !game.device.desktop||debug){
     jetBTN.visible = true;
   }else if (player.jetLevel <= 0){
     jetBTN.visible = false;
   }
 
-  if(!shootBTN.visible && seedCount > 0 && isMobile||debug){
+  if(!shootBTN.visible && seedCount > 0 && !game.device.desktop||debug){
     shootBTN.visible = true;
   }else if (seedCount <= 0){
     shootBTN.visible = false;
   }
 }
 
-//check if running in a mobile browser
-function mobileCheck(){
-  if( navigator.userAgent.match(/Android/i)
-  || navigator.userAgent.match(/webOS/i)
-  || navigator.userAgent.match(/iPhone/i)
-  || navigator.userAgent.match(/iPad/i)
-  || navigator.userAgent.match(/iPod/i)
-  || navigator.userAgent.match(/BlackBerry/i)
-  || navigator.userAgent.match(/Windows Phone/i)
-  ){
-    return true;
-  }else{
-    return false;
-  }
-}
