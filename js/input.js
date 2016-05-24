@@ -8,10 +8,7 @@ function preloadInput(){
 function createInput(){
     //go fullscreen on click
     fsClick(); 
-    var fitScreen = getURLvar('fitScreen');
-    if(fitScreen){
-      resizeGame(); //fit window width
-    }
+    resizeGame(); //fit window width
     cursors = game.input.keyboard.createCursorKeys(); 
 }
 

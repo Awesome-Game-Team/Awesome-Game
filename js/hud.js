@@ -109,7 +109,9 @@ function fsClick(){
   game.scale.pageAlignHorizontally = true;
   game.scale.pageAlignVertically = true;
   //game.input.onDown.add(fullscreen, this);
-  game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+  //game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+  game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+ 
 }
 
 function fullscreen(){
@@ -117,6 +119,8 @@ function fullscreen(){
   if (game.scale.isFullScreen){
     game.scale.stopFullScreen();
     fs_btn.frame = 0;
+    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+    setTimeout(resizeGame,200);
   }else{
     game.scale.startFullScreen();
     fs_btn.frame = 1;
