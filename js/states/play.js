@@ -5,6 +5,7 @@ var playState = {
         createDisplay();
         createSfx();
         createPlayer();
+        createEnemy();
         createExtras();
         createInput();
         createHUD();
@@ -18,6 +19,7 @@ var playState = {
         updateDisplay();
         updateSfx();
         updatePlayer();
+        updateEnemy();
         updateExtras();
         updateInput();
         updateHUD();
