@@ -19,13 +19,6 @@ function preloadSfx(){
 
 function createSfx(){
     musicLoad();
-
-    // Mute  
-    mute = false;
-    mute_btn = game.add.button(0,0, 'mute', muteClick, this);
-    mute_btn.fixedToCamera = true;
-    mute_btn.cameraOffset.setTo(game.width - 42, 10);
-    
     jetSound = game.add.audio('jetpack');
     jetSound.loopFull();
 }
@@ -43,14 +36,3 @@ function musicLoad(){
   music.loopFull();
 }
 
-function muteClick(){
-  if(mute == false){
-    mute = true;
-    music.stop();
-    mute_btn.frame = 1;
-  }else{
-    mute = false;
-    music.play();
-    mute_btn.frame = 0;
-  }
-}
