@@ -157,4 +157,9 @@ function playerHit(){
     //make sure the player can't get hit again for half a second
     setTimeout(function(){player.hit = false},500);
   }
+
+  //lose seeds when hit
+  if(seedCount > 0){
+    seedCount = 0;
+  }
 }
