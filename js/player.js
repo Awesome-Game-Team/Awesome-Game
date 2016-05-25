@@ -1,6 +1,7 @@
 var pad1;
 var players;
 var player;
+var player_decel = 4;
 
 function preloadPlayer(){
   game.load.spritesheet("player","res/player.png",64,64);
@@ -21,7 +22,19 @@ function updatePlayer(){
   game.physics.arcade.overlap(players, seeds, seedGet, null, this);
 
   var p = player;
-  p.body.velocity.x = 0;
+  if(player.body.velocity.x > 1){
+      player.body.velocity.x -= player_decel;
+  }else if(player.body.velocity.x < -1){
+      player.body.velocity.x += player_decel;
+  }else{
+      player.body.velocity.x = 0;
+      player.animations.stop();
+      if(player.direction == "right"){
+          player.frame = 4;
+      }else{
+          player.frame = 3;
+      }
+  }
 
   //jump
   if (cursors.up.isDown){
@@ -82,6 +95,8 @@ function playerCreate(x,y,pl){
   player.jet.onDown.add(function(){player.jetpackActive = true}, this);
   player.jet.onUp.add(function(){player.jetpackActive = false}, this);
 
+  player.hit = false;
+
   //shootSeeds
   player.shootSeeds = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   player.shootSeeds.onDown.add(playerShootSeed,this);
@@ -124,5 +139,27 @@ function playerShootSeed(){
   if(seedCount > 0){
     shootSeed(player);
     seedCount-=1;
+  }
+}
+
+function playerHit(){
+  if(!player.hit){
+    player.hit = true;
+
+    //push player way from enemy
+    if(player.direction == "right"){
+      player.body.velocity.x = -300;
+    }else{
+      player.body.velocity.x = 300;
+    }
+    player.body.velocity.y = -400;
+
+    //make sure the player can't get hit again for half a second
+    setTimeout(function(){player.hit = false},500);
+  }
+
+  //lose seeds when hit
+  if(seedCount > 0){
+    seedCount = 0;
   }
 }

@@ -5,6 +5,7 @@ var loadState = {
         preloadDisplay();
         preloadSfx();
         preloadPlayer();
+        preloadEnemy();
         preloadExtras();
         preloadInput();
         preloadHUD();
