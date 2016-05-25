@@ -17,7 +17,9 @@ function createEnemy(){
 }
 
 function updateEnemy(){
+  //collide
   game.physics.arcade.collide(enemies, layer);
+  game.physics.arcade.overlap(players, enemies, playerHit, null, this);
 
   enemies.forEach(function(e){
     if(e.type == "jumper" && e.body.onFloor()){

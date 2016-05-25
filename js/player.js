@@ -1,6 +1,7 @@
 var pad1;
 var players;
 var player;
+var player_decel = 4;
 
 function preloadPlayer(){
   game.load.spritesheet("player","res/player.png",64,64);
@@ -21,7 +22,19 @@ function updatePlayer(){
   game.physics.arcade.overlap(players, seeds, seedGet, null, this);
 
   var p = player;
-  p.body.velocity.x = 0;
+  if(player.body.velocity.x > 1){
+      player.body.velocity.x -= player_decel;
+  }else if(player.body.velocity.x < -1){
+      player.body.velocity.x += player_decel;
+  }else{
+      player.body.velocity.x = 0;
+      player.animations.stop();
+      if(player.direction == "right"){
+          player.frame = 4;
+      }else{
+          player.frame = 3;
+      }
+  }
 
   //jump
   if (cursors.up.isDown){
@@ -125,4 +138,11 @@ function playerShootSeed(){
     shootSeed(player);
     seedCount-=1;
   }
+}
+
+function playerHit(){
+  player.body.velocity.x = player.body.velocity.x + 100;
+  player.body.velocity.y = -400;
+
+   
 }
