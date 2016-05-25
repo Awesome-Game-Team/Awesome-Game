@@ -113,7 +113,7 @@ function playerLeft(){
   if(player.body.onFloor()){
     player.animations.play('left');
   }else{
-    player.frame = 1;
+    player.frame = 0;
   }
 }
 
@@ -123,7 +123,7 @@ function playerRight(){
   if(player.body.onFloor()){
     player.animations.play('right');
   }else{
-    player.frame = 6;
+    player.frame = 7;
   }
 }
 
