@@ -95,6 +95,8 @@ function playerCreate(x,y,pl){
   player.jet.onDown.add(function(){player.jetpackActive = true}, this);
   player.jet.onUp.add(function(){player.jetpackActive = false}, this);
 
+  player.hit = false;
+
   //shootSeeds
   player.shootSeeds = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   player.shootSeeds.onDown.add(playerShootSeed,this);
@@ -141,8 +143,18 @@ function playerShootSeed(){
 }
 
 function playerHit(){
-  player.body.velocity.x = player.body.velocity.x + 100;
-  player.body.velocity.y = -400;
+  if(!player.hit){
+    player.hit = true;
 
-   
+    //push player way from enemy
+    if(player.direction == "right"){
+      player.body.velocity.x = -300;
+    }else{
+      player.body.velocity.x = 300;
+    }
+    player.body.velocity.y = -400;
+
+    //make sure the player can't get hit again for half a second
+    setTimeout(function(){player.hit = false},500);
+  }
 }
