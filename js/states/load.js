@@ -2,6 +2,7 @@ var loadState = {
     
     preload : function() {
         preloadMap();
+        preloadDisplay();
         preloadSfx();
         preloadPlayer();
         preloadExtras();
@@ -12,6 +13,8 @@ var loadState = {
     },
     
     create : function(){
+      if(game.device.desktop||game.scale.isLandscape){
         game.state.start('play');
+      }
     },
 };

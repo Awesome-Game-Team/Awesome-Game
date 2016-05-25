@@ -2,6 +2,7 @@ var msgText;
 var msgTimeout;
 var HUDtext;
 var fs_btn;
+var btns=[];
 var debug = getURLvar('debug');
 
 function preloadHUD(){
@@ -19,6 +20,7 @@ function createHUD(){
   createMSG();
   createHUDtext();
 
+  alignBtns();
   //set timeout
   msgTimeout = game.time.now;
   
@@ -56,14 +58,14 @@ function createMuteBtn(){
   // Mute  
   mute = false;
   mute_btn = game.add.button(0,0, 'mute', muteClick, this);
+  btns.push(mute_btn);
   mute_btn.fixedToCamera = true;
-  mute_btn.cameraOffset.setTo(game.width - 42, 10);
 }
 
 function createFSBtn(){
   fs_btn = game.add.button(0,0, 'fullscreen', fullscreen, this);
+  btns.push(fs_btn);
   fs_btn.fixedToCamera = true;
-  fs_btn.cameraOffset.setTo(game.width - 84, 10);
 }
 
 
@@ -100,31 +102,8 @@ function muteClick(){
 }
 
 
-/* Code by Kris Occhipinti http://filmsbykris.com
-GPLv3 */
-
-//fullscreen on click
-function fsClick(){
-  //center game
-  game.scale.pageAlignHorizontally = true;
-  game.scale.pageAlignVertically = true;
-  //game.input.onDown.add(fullscreen, this);
-  //game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-  game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
- 
-}
-
-function fullscreen(){
-  //Set the game to stretch and fill the screen
-  if (game.scale.isFullScreen){
-    game.scale.stopFullScreen();
-    fs_btn.frame = 0;
-    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-    setTimeout(resizeGame,200);
-  }else{
-    game.scale.startFullScreen();
-    fs_btn.frame = 1;
+function alignBtns(){
+  for(var i = 0;i<btns.length;i++){
+    btns[i].cameraOffset.setTo(game.width - 64 * (i+1), 10);
   }
 }
-
-

@@ -2,6 +2,7 @@ var playState = {
     
     create : function() {
         createMap();
+        createDisplay();
         createSfx();
         createPlayer();
         createExtras();
@@ -14,6 +15,7 @@ var playState = {
     
     update : function() {
         updateMap();
+        updateDisplay();
         updateSfx();
         updatePlayer();
         updateExtras();
