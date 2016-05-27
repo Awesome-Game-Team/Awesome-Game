@@ -1,7 +1,7 @@
 var enemies;
 
 function preloadEnemy(){
-  var images = ["jumper"];
+  var images = ["jumper","jumper_death"];
   images.forEach(function(img){
     game.load.spritesheet(img, 'res/enemy/'+img+'.png',96,64);
   });
@@ -13,13 +13,15 @@ function createEnemy(){
   enemies.enableBody = true;
 
   //need to add this to map.json
-  newEnemy(200,200,"jumper",20);
+  newEnemy(200,200,"jumper",1);
+  newEnemy(800,200,"jumper",1);
 }
 
 function updateEnemy(){
   //collide
   game.physics.arcade.collide(enemies, layer);
   game.physics.arcade.overlap(players, enemies, playerHit, null, this);
+  game.physics.arcade.overlap(enemies, seedShots, enemyHit, null, this);
 
   enemies.forEach(function(e){
     if(e.type == "jumper" && e.body.onFloor()){
@@ -33,6 +35,8 @@ function newEnemy(x,y,type,life){
   e.type = type;
   e.scale.setTo(0.75);
   e.anchor.setTo(0.5,0.5);
+  e.life = life;
+  e.deathType = type + "_death";
  
   //animations
   e.frame = 2;
@@ -42,7 +46,29 @@ function newEnemy(x,y,type,life){
   e.body.bounce.y = 0;
   e.inputEnabled = true;
   e.body.collideWorldBounds = true;
-  e.life = life;
 }
 
+function enemyHit(e,s){
+  e.life -= s.hitPoint;
+  s.destroy();
+  if(e.life < 1){
+    enemyDeath(e);
+  }
+}
 
+function enemyDeath(e){
+  var x = e.position.x;
+  var y = e.position.y;
+  enemies.remove(e); 
+  death = game.add.sprite(x, y, e.deathType, 2);
+  death.scale.setTo(.75);
+  death.anchor.setTo(0.5,0.5);
+  game.physics.arcade.enable(death);
+  death.body.enable = true;
+  death.body.gravity.y = 500;
+  death.body.velocity.y = -400;
+
+  var tween = game.add.tween(death); 
+  tween.to({ rotation: 20 }, 2000, 'Linear', true, 0);  
+  tween.start();
+}
