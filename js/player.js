@@ -90,6 +90,7 @@ function playerCreate(x,y,pl){
   player.jetpack = 0;
   player.jetpackActive = false;
   player.direction = "right"; 
+  player.speed = 150;
   //keyboard inputs
   //jetpack
   player.jet = game.input.keyboard.addKey(Phaser.Keyboard.J);
@@ -109,7 +110,7 @@ function playerCreate(x,y,pl){
 }
 
 function playerLeft(){
-  player.body.velocity.x = -150;
+  player.body.velocity.x = -player.speed;
   player.direction = "left";//for weapons
   if(player.body.onFloor()){
     player.animations.play('left');
@@ -119,7 +120,7 @@ function playerLeft(){
 }
 
 function playerRight(){
-  player.body.velocity.x = 150;
+  player.body.velocity.x = player.speed;
   player.direction = "right"; //for weapons
   if(player.body.onFloor()){
     player.animations.play('right');
