@@ -20,6 +20,7 @@ function updatePlayer(){
   game.physics.arcade.collide(players, layer);
   game.physics.arcade.overlap(players, jetpacks, jetpackGet, null, this);
   game.physics.arcade.overlap(players, seeds, seedGet, null, this);
+  game.physics.arcade.overlap(players, seedsDropped, seedGet, null, this);
 
   var p = player;
   if(player.body.velocity.x > 1){
@@ -158,6 +159,9 @@ function playerHit(){
     setTimeout(function(){player.hit = false},500);
   }
 
+  for(var i=0;i < seedCount;i++){
+    dropSeeds(player);
+  }
   //lose seeds when hit
   if(seedCount > 0){
     seedCount = 0;

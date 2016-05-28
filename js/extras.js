@@ -25,8 +25,8 @@ function createExtras(){
     
     seeds = game.add.group();
     seeds.enableBody = true;
-    var packs = findObjectsByType("seed",map);
-    packs.forEach(function(s){
+    var seed = findObjectsByType("seed",map);
+    seed.forEach(function(s){
       seedLoad(s.x,s.y);
     });
     
@@ -90,13 +90,16 @@ function jetpackGet(player, pack){
 //////////
 
 function seedLoad(x,y){
-  var pack = seeds.create(x, y,"seed");
+  var seed = seeds.create(x, y,"seed");
+  seed.collect = true;
 }
 
-function seedGet(player, pack){
-  pack.kill();
-  seedSound.play();
-  seedCount++;
+function seedGet(player, seed){
+  if(seed.collect){
+    seed.kill();
+    seedSound.play();
+    seedCount++;
+  }
 }
 
 function getURLvar(name, url) {
@@ -113,21 +116,33 @@ function dropSeeds(obj){
   var x = obj.body.x;
   var y = obj.body.y;
   var seed = seedsDropped.create(x, y,"seed");
+  var life = (Math.floor(Math.random() * 4) + 2) * 1000;
+  seed.lifespan = life;
   seed.body.gravity.y = 500;
   seed.body.bounce.y = .5;
 
   var velx = Math.random() * 800 - 400;  
-  var vely = (Math.random() * 400)*-1;  
+  var vely = (Math.random() * 600 + 200)*-1;  
   seed.body.velocity.x = velx;
   seed.body.velocity.y = vely;
 
   //seed deceleration 
   seed.decel = 2;
+
+  //Wait before being collected
+  seed.collect = false;
+  seed.collectAt = game.time.now + 500;
 }
 
 function droppedSeedsUpdate(){
 
   seedsDropped.forEach(function(seed){
+    //make collectable after set time
+    if(game.time.now > seed.collectAt){
+      seed.collect = true;
+    }
+
+    //slow seed to a stop
     if(seed.body.velocity.x > 1){
         seed.body.velocity.x -= seed.decel;
     }else if(seed.body.velocity.x < -1){
