@@ -3,7 +3,7 @@ var enemies;
 function preloadEnemy(){
   var images = ["jumper","jumper_death"];
   images.forEach(function(img){
-    game.load.spritesheet(img, 'res/enemy/'+img+'.png',96,64);
+    game.load.spritesheet(img, 'res/enemy/'+img+'.png',64,64);
   });
 
 }
@@ -33,7 +33,7 @@ function updateEnemy(){
 function newEnemy(x,y,type,life){
   var e = enemies.create(x, y, type);
   e.type = type;
-  e.scale.setTo(0.75);
+  e.scale.setTo(1,0.75);
   e.anchor.setTo(0.5,0.5);
   e.life = life;
   e.deathType = type + "_death";
@@ -61,7 +61,7 @@ function enemyDeath(e){
   var y = e.position.y;
   enemies.remove(e); 
   death = game.add.sprite(x, y, e.deathType, 2);
-  death.scale.setTo(.75);
+  death.scale.setTo(1,0.75);
   death.anchor.setTo(0.5,0.5);
   game.physics.arcade.enable(death);
   death.body.enable = true;
