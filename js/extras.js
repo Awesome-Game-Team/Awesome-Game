@@ -152,3 +152,9 @@ function droppedSeedsUpdate(){
     }
   });
 }
+
+function getDistanceX(obj1,obj2){
+  var d = obj1.x - obj2.x;
+  if(d<0){d*=-1}
+  return d;
+}

@@ -1,7 +1,7 @@
 var enemies;
 
 function preloadEnemy(){
-  var images = ["jumper","jumper_death"];
+  var images = ["jumper","jumper_death","trooper","trooper_death"];
   images.forEach(function(img){
     game.load.spritesheet(img, 'res/enemy/'+img+'.png',64,64);
   });
@@ -15,6 +15,7 @@ function createEnemy(){
   //need to add this to map.json
   newEnemy(200,200,"jumper",1);
   newEnemy(800,200,"jumper",1);
+  newEnemy(1500,200,"trooper",1);
 }
 
 function updateEnemy(){
@@ -26,6 +27,9 @@ function updateEnemy(){
   enemies.forEach(function(e){
     if(e.type == "jumper" && e.body.onFloor()){
       e.body.velocity.y = -400;      
+    }else if(e.type == "trooper" && e.body.onFloor() && getDistanceX(player,e) < game.width){
+      e.body.velocity.x=-100;
+      e.animations.play('left');
     }
   });
 }
