@@ -1,9 +1,10 @@
 var enemies;
 
 function preloadEnemy(){
-  var images = ["jumper","jumper_death","trooper","trooper_death"];
+  var images = ["jumper","trooper","pacer"];
   images.forEach(function(img){
     game.load.spritesheet(img, 'res/enemy/'+img+'.png',64,64);
+    game.load.spritesheet(img+"_death", 'res/enemy/'+img+'_death.png',64,64);
   });
 
 }
@@ -24,6 +25,12 @@ function createEnemy(){
     newEnemy(j.x,j.y,j.type,1);
   });
 
+  //load pacers
+  var pacers = findObjectsByType("pacer",map);
+  pacers.forEach(function(j){
+    newEnemy(j.x,j.y,j.type,1);
+  });
+
 
 }
 
@@ -34,21 +41,44 @@ function updateEnemy(){
   game.physics.arcade.overlap(enemies, seedShots, enemyHit, null, this);
 
   enemies.forEach(function(e){
+    //jumper
     if(e.type == "jumper" && e.body.onFloor()){
       e.body.velocity.y = -400;      
+    //troopers
     }else if(e.type == "trooper" && e.body.onFloor() && getDistanceX(player,e) < game.width){
       if(e.direction == "right"){
         e.body.velocity.x=100;
       }else if(e.direction == "left"){
         e.body.velocity.x=-100;
       }
-
-      if(e.body.blocked.left){
-        e.direction = "right";
-      }else if(e.body.blocked.right){
-        e.direction = "left";
-      }
       e.animations.play(e.direction);
+
+    //pacer
+    }else if(e.type == "pacer" && getDistanceX(player,e) < game.width){
+      if(e.body.onFloor()){ e.getY = e.body.y}
+
+      if(!e.body.onFloor() && e.direction == "right"){
+        e.direction = "left";
+      }else if(!e.body.onFloor() && e.direction == "left"){
+        e.direction = "right";
+      }
+      if(e.direction == "right"){
+        e.body.y = e.getY;
+        e.body.velocity.x=100;
+      }else if(e.direction == "left"){
+        e.body.y = e.getY;
+        e.body.velocity.x=-100;
+      }
+
+
+      e.animations.play(e.direction);
+    }
+
+    //turn when hit wall
+    if(e.body.blocked.left){
+      e.direction = "right";
+    }else if(e.body.blocked.right){
+      e.direction = "left";
     }
   });
 }

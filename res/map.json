@@ -682,6 +682,22 @@
                  "width":64,
                  "x":5060,
                  "y":460
+                }, 
+                {
+                 "gid":30,
+                 "height":64,
+                 "id":84,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"pacer",
+                 "visible":true,
+                 "width":64,
+                 "x":1032,
+                 "y":284
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -690,7 +706,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":84,
+ "nextobjectid":85,
  "orientation":"orthogonal",
  "properties":
     {
@@ -774,7 +790,7 @@
          "firstgid":27,
          "image":"..\/projectFiles\/allobjs.png",
          "imageheight":64,
-         "imagewidth":192,
+         "imagewidth":256,
          "margin":0,
          "name":"allobjs",
          "properties":
@@ -782,7 +798,7 @@
 
             },
          "spacing":0,
-         "tilecount":3,
+         "tilecount":4,
          "tileheight":64,
          "tilewidth":64,
          "transparentcolor":"#ff00ff"
