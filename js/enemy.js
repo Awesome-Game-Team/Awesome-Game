@@ -28,8 +28,18 @@ function updateEnemy(){
     if(e.type == "jumper" && e.body.onFloor()){
       e.body.velocity.y = -400;      
     }else if(e.type == "trooper" && e.body.onFloor() && getDistanceX(player,e) < game.width){
-      e.body.velocity.x=-100;
-      e.animations.play('left');
+      if(e.direction == "right"){
+        e.body.velocity.x=100;
+      }else if(e.direction == "left"){
+        e.body.velocity.x=-100;
+      }
+
+      if(e.body.blocked.left){
+        e.direction = "right";
+      }else if(e.body.blocked.right){
+        e.direction = "left";
+      }
+      e.animations.play(e.direction);
     }
   });
 }
@@ -43,6 +53,7 @@ function newEnemy(x,y,type,life){
   e.deathType = type + "_death";
  
   //animations
+  e.direction = "left";
   e.frame = 2;
   e.animations.add('left', [2,1,0], 20, true);
   e.animations.add('right', [3,4,5], 20, true);
