@@ -538,6 +538,150 @@
                  "width":32,
                  "x":2016,
                  "y":608
+                }, 
+                {
+                 "gid":27,
+                 "height":64,
+                 "id":73,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"jumper",
+                 "visible":true,
+                 "width":64,
+                 "x":884,
+                 "y":372
+                }, 
+                {
+                 "gid":27,
+                 "height":64,
+                 "id":75,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"jumper",
+                 "visible":true,
+                 "width":64,
+                 "x":1236,
+                 "y":340
+                }, 
+                {
+                 "gid":27,
+                 "height":64,
+                 "id":76,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"jumper",
+                 "visible":true,
+                 "width":64,
+                 "x":1852,
+                 "y":280
+                }, 
+                {
+                 "gid":28,
+                 "height":64,
+                 "id":77,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"tropper",
+                 "visible":true,
+                 "width":64,
+                 "x":1668,
+                 "y":408
+                }, 
+                {
+                 "gid":28,
+                 "height":64,
+                 "id":79,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"tropper",
+                 "visible":true,
+                 "width":64,
+                 "x":2324,
+                 "y":488
+                }, 
+                {
+                 "gid":28,
+                 "height":64,
+                 "id":80,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"tropper",
+                 "visible":true,
+                 "width":64,
+                 "x":3656,
+                 "y":368
+                }, 
+                {
+                 "gid":28,
+                 "height":64,
+                 "id":81,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"tropper",
+                 "visible":true,
+                 "width":64,
+                 "x":5464,
+                 "y":496
+                }, 
+                {
+                 "gid":27,
+                 "height":64,
+                 "id":82,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"jumper",
+                 "visible":true,
+                 "width":64,
+                 "x":4492,
+                 "y":104
+                }, 
+                {
+                 "gid":27,
+                 "height":64,
+                 "id":83,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"jumper",
+                 "visible":true,
+                 "width":64,
+                 "x":5060,
+                 "y":460
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -546,7 +690,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":73,
+ "nextobjectid":84,
  "orientation":"orthogonal",
  "properties":
     {
@@ -625,6 +769,23 @@
          "tilecount":4,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "firstgid":27,
+         "image":"..\/projectFiles\/allobjs.png",
+         "imageheight":64,
+         "imagewidth":192,
+         "margin":0,
+         "name":"allobjs",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":3,
+         "tileheight":64,
+         "tilewidth":64,
+         "transparentcolor":"#ff00ff"
         }],
  "tilewidth":32,
  "version":1,
