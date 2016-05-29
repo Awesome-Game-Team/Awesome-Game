@@ -110,10 +110,10 @@
   <object id="73" type="jumper" gid="27" x="884" y="372" width="64" height="64"/>
   <object id="75" type="jumper" gid="27" x="1236" y="340" width="64" height="64"/>
   <object id="76" type="jumper" gid="27" x="1852" y="280" width="64" height="64"/>
-  <object id="77" type="tropper" gid="28" x="1668" y="408" width="64" height="64"/>
-  <object id="79" type="tropper" gid="28" x="2324" y="488" width="64" height="64"/>
-  <object id="80" type="tropper" gid="28" x="3656" y="368" width="64" height="64"/>
-  <object id="81" type="tropper" gid="28" x="5464" y="496" width="64" height="64"/>
+  <object id="77" type="trooper" gid="28" x="1668" y="408" width="64" height="64"/>
+  <object id="79" type="trooper" gid="28" x="2324" y="488" width="64" height="64"/>
+  <object id="80" type="trooper" gid="28" x="3656" y="368" width="64" height="64"/>
+  <object id="81" type="trooper" gid="28" x="5464" y="496" width="64" height="64"/>
   <object id="82" type="jumper" gid="27" x="4492" y="104" width="64" height="64"/>
   <object id="83" type="jumper" gid="27" x="5060" y="460" width="64" height="64"/>
  </objectgroup>

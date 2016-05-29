@@ -12,10 +12,19 @@ function createEnemy(){
   enemies = game.add.group(); 
   enemies.enableBody = true;
 
-  //need to add this to map.json
-  newEnemy(200,200,"jumper",1);
-  newEnemy(800,200,"jumper",1);
-  newEnemy(1500,200,"trooper",1);
+  //load troopers
+  var troopers = findObjectsByType("trooper",map);
+  troopers.forEach(function(t){
+    newEnemy(t.x,t.y,t.type,1);
+  });
+
+  //load jumpers //need to put all enemies in one function
+  var jumpers = findObjectsByType("jumper",map);
+  jumpers.forEach(function(j){
+    newEnemy(j.x,j.y,j.type,1);
+  });
+
+
 }
 
 function updateEnemy(){
