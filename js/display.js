@@ -1,5 +1,4 @@
 var gameRatio = window.innerWidth/window.innerHeight;
-//var game = new Phaser.Game(Math.ceil(640*gameRatio), 640, Phaser.CANVAS);
 var fs = false;
 
 function preloadDisplay(){
@@ -12,25 +11,6 @@ function createDisplay(){
 }
 
 function updateDisplay(){
-}
-
-function handleIncorrect(){
-  if(!game.device.desktop){
-    alert("Turn Device to Landscape mode");
-    //document.getElementById("turn").style.display="block";
-  }
-}
-
-function handleCorrect(){
-  if(!game.device.desktop){
-    if(firstRunLandscape){
-      game.width = Math.ceil(640*gameRatio);
-      game.height = 640;
-      game.renderer.resize(game.width,game.height);
-      game.state.start('play');
-    }
-  //document.getElementById("turn").style.display="none";
-  }
 }
 
 /* Code by Kris Occhipinti http://filmsbykris.com

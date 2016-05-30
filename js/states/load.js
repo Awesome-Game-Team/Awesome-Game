@@ -14,8 +14,6 @@ var loadState = {
     },
     
     create : function(){
-      if(game.device.desktop||game.scale.isLandscape){
-        game.state.start('play');
-      }
+      game.state.start('play');
     },
 };

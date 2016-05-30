@@ -15,7 +15,6 @@ function createOSC(){
   if(!game.device.desktop || debug){
     btnCreate();
   }
-
   createShootBTN();
   createJetBTN();
 }
