@@ -18,8 +18,10 @@ function shootSeed(obj){
   var vel = 500;
 
   var seed = seedShots.create(x, y,"seed");
+  seed.lifespan = 5000;
   seed.anchor.setTo(.5,.5);
   seed.from = obj.type;
+  seed.hitPoint = 1;
   if(d == "right"){
     seed.angle = 90; 
     seed.body.velocity.x = vel;
@@ -27,5 +29,6 @@ function shootSeed(obj){
     seed.angle = -90; 
     seed.body.velocity.x = -vel;
   }
+
    
 }

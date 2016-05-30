@@ -1,5 +1,6 @@
 var seedCount;
 var seedSound;
+var seedsDropped;
 var powerupSound;
 var text;
 var play_flag = 0;
@@ -24,20 +25,25 @@ function createExtras(){
     
     seeds = game.add.group();
     seeds.enableBody = true;
-    var packs = findObjectsByType("seed",map);
-    packs.forEach(function(s){
+    var seed = findObjectsByType("seed",map);
+    seed.forEach(function(s){
       seedLoad(s.x,s.y);
     });
     
     seedSound = game.add.audio('seed');
     seedCount = 0;
+
+    seedsDropped = game.add.group();
+    seedsDropped.enableBody = true;
 }
 
 function updateExtras(){
-    game.physics.arcade.collide(jetpacks, layer);
-    jetpackActive();
-    game.physics.arcade.collide(seeds, layer);
+  game.physics.arcade.collide(jetpacks, layer);
+  jetpackActive();
+  game.physics.arcade.collide(seeds, layer);
+  game.physics.arcade.collide(seedsDropped, layer);
 
+  droppedSeedsUpdate();
 }
 
 /*Add extra's below.
@@ -84,13 +90,16 @@ function jetpackGet(player, pack){
 //////////
 
 function seedLoad(x,y){
-  var pack = seeds.create(x, y,"seed");
+  var seed = seeds.create(x, y,"seed");
+  seed.collect = true;
 }
 
-function seedGet(player, pack){
-  pack.kill();
-  seedSound.play();
-  seedCount++;
+function seedGet(player, seed){
+  if(seed.collect){
+    seed.kill();
+    seedSound.play();
+    seedCount++;
+  }
 }
 
 function getURLvar(name, url) {
@@ -101,4 +110,51 @@ function getURLvar(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function dropSeeds(obj){
+  var x = obj.body.x;
+  var y = obj.body.y;
+  var seed = seedsDropped.create(x, y,"seed");
+  var life = (Math.floor(Math.random() * 4) + 2) * 1000;
+  seed.lifespan = life;
+  seed.body.gravity.y = 500;
+  seed.body.bounce.y = .5;
+
+  var velx = Math.random() * 800 - 400;  
+  var vely = (Math.random() * 600 + 200)*-1;  
+  seed.body.velocity.x = velx;
+  seed.body.velocity.y = vely;
+
+  //seed deceleration 
+  seed.decel = 2;
+
+  //Wait before being collected
+  seed.collect = false;
+  seed.collectAt = game.time.now + 500;
+}
+
+function droppedSeedsUpdate(){
+
+  seedsDropped.forEach(function(seed){
+    //make collectable after set time
+    if(game.time.now > seed.collectAt){
+      seed.collect = true;
+    }
+
+    //slow seed to a stop
+    if(seed.body.velocity.x > 1){
+        seed.body.velocity.x -= seed.decel;
+    }else if(seed.body.velocity.x < -1){
+        seed.body.velocity.x += seed.decel;
+    }else{
+        seed.body.velocity.x = 0;
+    }
+  });
+}
+
+function getDistanceX(obj1,obj2){
+  var d = obj1.x - obj2.x;
+  if(d<0){d*=-1}
+  return d;
 }
