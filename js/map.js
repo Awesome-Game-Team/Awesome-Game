@@ -28,9 +28,7 @@ function loadMap(){
   map.addTilesetImage('tux', 'tux');
   map.addTilesetImage('tileSet', 'tiles');
   
-  /* Creates a layer that the character will not collide with.
-  The layer name 'backdrop' is specified in the Tiled map editor (and in the tilemap json file).
-  We must create this layer first in order for other layers to apear on top of it */
+  // Creates a layer that the character will not collide with.
   layerbackdrop = map.createLayer('backdrop');
   
   /* Creates a layer from the World layer in the map data.
@@ -41,8 +39,8 @@ function loadMap(){
   //  This resizes the game world to match the layer dimensions
   layer.resizeWorld();
   loadBackground();
-  layer.bringToTop();
   layerbackdrop.bringToTop();
+  layer.bringToTop();
 }
 
 //find objects in a Tiled layer that containt a property called "type" equal to a certain value
@@ -62,18 +60,8 @@ function findObjectsByType(type, map, layer) {
 
 function loadBackground(){
   background = game.add.tileSprite(0, 0, game.world.width, game.world.height, 'background'); 
-/* 
-  // add first background tile and calculate how many will be needed to cover the whole map
-  background = game.add.sprite(0, 0, 'background');
-  var num_tiles = (map.width * 32) / background.width;
-
-  // add the rest of the background tiles
-  for(i = 1; i < num_tiles; i++){
-   game.add.sprite(i * background.width, 0, 'background');
-  }
-*/
 }
 
 function backgroundUpdate(){
-  background.position.x = game.camera.x/2;
+  background.position.x = game.camera.x/4;
 }

@@ -1,11 +1,15 @@
 var enemies;
 
 function preloadEnemy(){
-  var images = ["jumper","trooper","pacer"];
-  images.forEach(function(img){
-    game.load.spritesheet(img, 'res/enemy/'+img+'.png',64,64);
-    game.load.spritesheet(img+"_death", 'res/enemy/'+img+'_death.png',64,64);
-  });
+
+    game.load.spritesheet("jumper", 'res/enemy/jumper.png',96,192);
+    game.load.spritesheet("jumper_death", 'res/enemy/jumper_death.png',96,192);
+    
+    game.load.spritesheet("pacer", 'res/enemy/pacer.png',128,82);
+    game.load.spritesheet("pacer_death", 'res/enemy/pacer_death.png',128,82);
+    
+    game.load.spritesheet("trooper", 'res/enemy/trooper.png',128,118);
+    game.load.spritesheet("trooper_death", 'res/enemy/trooper_death.png',128,118);
 
 }
 
@@ -86,8 +90,8 @@ function updateEnemy(){
 function newEnemy(x,y,type,life){
   var e = enemies.create(x, y, type);
   e.type = type;
-  e.scale.setTo(1,0.75);
-  e.anchor.setTo(0.5,0.5);
+  e.scale.setTo(0.75);
+  e.anchor.setTo(0.5);
   e.life = life;
   e.deathType = type + "_death";
  
@@ -115,8 +119,8 @@ function enemyDeath(e){
   var y = e.position.y;
   enemies.remove(e); 
   death = game.add.sprite(x, y, e.deathType, 2);
-  death.scale.setTo(1,0.75);
-  death.anchor.setTo(0.5,0.5);
+  death.scale.setTo(0.5);
+  death.anchor.setTo(0.5);
   game.physics.arcade.enable(death);
   death.body.enable = true;
   death.body.gravity.y = 500;
