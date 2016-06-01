@@ -64,4 +64,5 @@ function loadBackground(){
 
 function backgroundUpdate(){
   background.position.x = game.camera.x/4;
+  background.position.y = game.camera.y/4;
 }
