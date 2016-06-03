@@ -74,7 +74,7 @@ function updatePlayer(){
 
 function playerCreate(x,y,pl){
   //get player start position from object layer 
-  var pos = findObjectsByType('playerStart', map);
+  var pos = findObjectsByType('player', map);
   player = players.create(pos[0].x, pos[0].y, pl);
   player.scale.setTo(0.75,0.75);
   player.anchor.setTo(0.5,0.5);

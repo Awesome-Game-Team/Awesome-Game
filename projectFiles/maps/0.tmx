@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="23" tilewidth="32" tileheight="32" nextobjectid="86">
- <tileset firstgid="1" name="tileSet" tilewidth="32" tileheight="32" tilecount="20">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="20">
   <image source="../../res/tiles.png" trans="ff00ff" width="128" height="160"/>
   <terraintypes>
    <terrain name="New Terrain" tile="-1"/>

@@ -3,7 +3,12 @@ var layer, layerbackdrop;
 var background;
 
 function preloadMap(){
-    game.load.tilemap('map', 'res/map.json', null, Phaser.Tilemap.TILED_JSON);
+    var mjson = getURLvar("map");
+    if(mjson == null){
+      game.load.tilemap('map', 'res/0.json', null, Phaser.Tilemap.TILED_JSON);
+    }else{
+      game.load.tilemap('map', 'res/'+mjson+'.json', null, Phaser.Tilemap.TILED_JSON);
+    }
     game.load.image('tiles', 'res/tiles.png');
     game.load.image('background', 'res/backgrounds/background.gif');
     game.load.image('tux', 'res/tux.png');
@@ -26,7 +31,7 @@ function loadMap(){
 
 
   map.addTilesetImage('tux', 'tux');
-  map.addTilesetImage('tileSet', 'tiles');
+  map.addTilesetImage('tiles', 'tiles');
   
   // Creates a layer that the character will not collide with.
   layerbackdrop = map.createLayer('backdrop');
