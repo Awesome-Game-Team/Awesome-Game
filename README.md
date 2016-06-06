@@ -9,6 +9,7 @@ RIGHT | Move right
 DOWN | Move down
 LEFT | Move left
 J | Use jetpack
+SPACEBAR | Throw seed
 
 # Play Game (nightly build)
 Stable: http://filmsbykris.com/scripts/Awesome-Game/
