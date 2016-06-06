@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="23" tilewidth="32" tileheight="32" nextobjectid="86">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="23" tilewidth="32" tileheight="32" nextobjectid="89">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="20">
   <image source="../../res/tiles.png" trans="ff00ff" width="128" height="160"/>
   <terraintypes>
@@ -117,5 +117,6 @@
   <object id="82" type="jumper" gid="27" x="4492" y="104" width="64" height="64"/>
   <object id="83" type="jumper" gid="27" x="5060" y="460" width="64" height="64"/>
   <object id="84" type="pacer" gid="30" x="1032" y="284" width="64" height="64"/>
+  <object id="88" name="background" type="bgcity" x="137" y="125" width="175" height="99"/>
  </objectgroup>
 </map>

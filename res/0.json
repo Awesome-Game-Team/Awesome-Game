@@ -698,6 +698,21 @@
                  "width":64,
                  "x":1032,
                  "y":284
+                }, 
+                {
+                 "height":99,
+                 "id":88,
+                 "name":"background",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"bgcity",
+                 "visible":true,
+                 "width":175,
+                 "x":137,
+                 "y":125
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -706,7 +721,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":86,
+ "nextobjectid":89,
  "orientation":"orthogonal",
  "properties":
     {

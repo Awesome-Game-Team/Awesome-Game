@@ -24,7 +24,7 @@
         }, 
         {
          "draworder":"topdown",
-         "height":200,
+         "height":0,
          "name":"objects",
          "objects":[
                 {
@@ -42,15 +42,45 @@
                  "width":48,
                  "x":140,
                  "y":6116
+                }, 
+                {
+                 "height":121,
+                 "id":4,
+                 "name":"clouds",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"1",
+                 "visible":true,
+                 "width":204,
+                 "x":1246,
+                 "y":87.5
+                }, 
+                {
+                 "height":124,
+                 "id":5,
+                 "name":"background",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"sky",
+                 "visible":true,
+                 "width":248,
+                 "x":524,
+                 "y":88
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":50,
+         "width":0,
          "x":0,
          "y":0
         }],
- "nextobjectid":4,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "properties":
     {

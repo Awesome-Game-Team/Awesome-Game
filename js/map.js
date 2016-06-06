@@ -1,6 +1,6 @@
 var map;
 var layer, layerbackdrop;
-var background;
+var background,clouds;
 
 function preloadMap(){
     var mjson = getURLvar("map");
@@ -10,17 +10,29 @@ function preloadMap(){
       game.load.tilemap('map', 'res/'+mjson+'.json', null, Phaser.Tilemap.TILED_JSON);
     }
     game.load.image('tiles', 'res/tiles.png');
-    game.load.image('background', 'res/backgrounds/background.gif');
     game.load.image('tux', 'res/tux.png');
+
+    var bg = ["bgcity","clouds_1","sky"];
+    bg.forEach(function(b){
+      game.load.image(b, 'res/backgrounds/'+b+'.gif');
+    });
 }
 
 
 function createMap(){
-    loadMap();
+  loadMap();  
 }
 
 function updateMap(){
-  backgroundUpdate();
+  if(background !== undefined){
+    background.position.x = game.camera.x/4;
+    background.position.y = game.camera.y/4;
+  }
+
+  if(clouds !== undefined){
+    clouds.position.x = game.camera.x/2;
+    clouds.position.y = game.camera.y/2;
+  }
 }
 
 
@@ -45,6 +57,7 @@ function loadMap(){
   layer.resizeWorld();
   loadBackground();
   layerbackdrop.bringToTop();
+  loadClouds();
   layer.bringToTop();
 }
 
@@ -64,10 +77,37 @@ function findObjectsByType(type, map, layer) {
 }
 
 function loadBackground(){
-  background = game.add.tileSprite(0, 0, game.world.width, game.world.height, 'background'); 
+  var result = new Array();
+  map.objects.objects.forEach(function(element){
+    if(element.name === "background") {
+      /* Phaser uses top left, Tiled bottom left so we have to adjust the y position
+         also keep in mind that the cup images are a bit smaller than the tile which is 16x16
+         so they might not be placed in the exact pixel position as in Tiled */
+      element.y -= map.tileHeight;
+      result.push(element);
+    }
+  });
+
+  if(result.length > 0){
+    background = game.add.tileSprite(0, 0, game.world.width, game.world.height, result[0].type); 
+  }
 }
 
-function backgroundUpdate(){
-  background.position.x = game.camera.x/4;
-  background.position.y = game.camera.y/4;
+
+function loadClouds(){
+  var result = new Array();
+  map.objects.objects.forEach(function(element){
+    if(element.name === "clouds") {
+      /* Phaser uses top left, Tiled bottom left so we have to adjust the y position
+         also keep in mind that the cup images are a bit smaller than the tile which is 16x16
+         so they might not be placed in the exact pixel position as in Tiled */
+      element.y -= map.tileHeight;
+      result.push(element);
+    } 
+  });
+
+  if(result.length > 0){
+    clouds = game.add.tileSprite(0, 0, game.world.width, game.world.height, 'clouds_'+result[0].type);
+    clouds.bringToTop();
+  }
 }
